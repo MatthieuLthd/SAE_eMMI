@@ -1,3 +1,25 @@
-controllers:
-    resource: ../src/Controller/
-    type: attribute
+# config/routes.yaml
+events:
+    path: /events
+    controller: App\Controller\EventController::index
+
+event_show:
+    path: /events/{id}
+    controller: App\Controller\EventController::show
+    requirements:
+        id: '\d+'
+
+event_create:
+    path: /events/create
+    controller: App\Controller\EventController::create
+    methods: [POST]
+
+event_update:
+    path: /events/{id}/update
+    controller: App\Controller\EventController::update
+    methods: [PUT]
+
+event_delete:
+    path: /events/{id}/delete
+    controller: App\Controller\EventController::delete
+    methods: [DELETE]
