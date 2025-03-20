@@ -1,17 +1,19 @@
 <?php
 
+// src/Entity/User.php
+
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
-use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\Constraints as Assert; // Ajoutez cette ligne pour importer les contraintes de validation
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="users")
  */
-class User implements UserInterface, PasswordAuthenticatedUserInterface
+class UserP implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id

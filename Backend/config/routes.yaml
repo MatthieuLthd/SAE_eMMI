@@ -1,4 +1,12 @@
 # config/routes.yaml
+app_dashboard:
+    path: /dashboard
+    controller: App\Controller\DashboardController::index
+
+
+
+
+# config/routes.yaml
 events:
     path: /events
     controller: App\Controller\EventController::index
@@ -12,14 +20,41 @@ event_show:
 event_create:
     path: /events/create
     controller: App\Controller\EventController::create
-    methods: [POST]
+    methods: [GET, POST]
 
 event_update:
     path: /events/{id}/update
     controller: App\Controller\EventController::update
-    methods: [PUT]
+    methods: [GET, POST]
 
 event_delete:
     path: /events/{id}/delete
     controller: App\Controller\EventController::delete
     methods: [DELETE]
+
+# Routes pour la gestion des comptes
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::login
+    methods: [GET, POST]
+
+app_logout:
+    path: /logout
+    controller: App\Controller\LoginController::logout
+
+app_register:
+    path: /register
+    controller: App\Controller\RegistrationController::register
+    methods: [GET, POST]
+
+app_forgot_password:
+    path: /forgot-password
+    controller: App\Controller\LoginController::forgotPassword
+    methods: [GET, POST]
+
+app_reset_password:
+    path: /reset-password/{token}
+    controller: App\Controller\LoginController::resetPassword
+    methods: [GET, POST]
+    requirements:
+        token: '[a-zA-Z0-9]+'

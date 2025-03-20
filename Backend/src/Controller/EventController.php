@@ -57,6 +57,12 @@ class EventController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $event->setCreatedAt(new \DateTime()); // Set the created_at field
+
+            // Assuming you have a way to get the current user
+            $user = $this->getUser();
+            $event->setOrganizer($user); // Set the organizer field
+
             $entityManager = $this->entityManager;
             $entityManager->persist($event);
             $entityManager->flush();
@@ -68,6 +74,7 @@ class EventController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/events/{id}/update", name="event_update", methods={"PUT"})
      */
