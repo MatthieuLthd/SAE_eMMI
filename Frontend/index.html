@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NavBar</title>
+    <link rel="stylesheet" href="css/navbar.css">
+    <link rel="stylesheet" href="css/style.css">    
+</head>
+<body ng-controller="evenement">
+<nav class="navbar">
+    <a href="index.html" class="logo">e-MMI</a>
+    <div class="nav-links">
+        <ul>
+            <li class="bleu"><a href="./Page/login.html">Mon espace</a></li>
+        </ul>    
+    </div>
+</nav>
+<section class="accueil">
+    <h1>La <span>plateforme</span> qui <br>
+        <span>connecte</span> tous les <span>MMI</span>
+    </h1>
+  </section>
+  <section class="event">
+    <div class="tsecondaire">
+      <h2>ÉVENEMENTS À VENIR</h2>
+    </div>
+    <div>
+      <div>
+        <ul>
+          <li ng-repeat = "event in events">
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.description }}</p>
+            <p>{{ event.location }}</p>
+            <p>{{ event.date }}</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+

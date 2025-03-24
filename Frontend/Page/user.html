@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User</title>
+    <link rel="stylesheet" href="../css/navbar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">e-MMI</a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../Page/créerevent.html">Créer un évenèment</a></li>
+                <li><a href="../Page/dashboard.html">Dashboard</a></li>
+                <button class="bleu" ng-if="user" ng-click="logout()">Déconnexion</button>
+            </ul>    
+        </div>
+    </nav>
+    <section class="accueil" ng-controller="UserController">
+        <h1 ng-if="user">Bienvenue, {{ user.username }}</h1>
+        <a href="../Page/créerevent.html">Créer un évenèment</a>
+      </section>
+      <section class="event">
+        <div class="tsecondaire">
+          <h2>ÉVENEMENTS À VENIR</h2>
+        </div>
+      </section> 
+      <div>
+        <div>
+          <ul>
+            <li ng-repeat = "event in events">
+              <h3>{{ event.title }}</h3>
+              <p>{{ event.description }}</p>
+              <p>{{ event.location }}</p>
+              <p>{{ event.date }}</p>
+            </li>
+          </ul>
+        </div>
+      </div> 
+      <section class="event">
+        <div class="tsecondaire">
+          <h2>MES INSCRIPTIONS</h2>
+        </div>
+      </section>
+        
+</body>
+</html>

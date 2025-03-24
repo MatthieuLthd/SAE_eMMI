@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" ng-app>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Créer un évenement</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="../css/navbar.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">e-MMI</a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../Page/créerevent.html">Créer un évenèment</a></li>
+                <li><a href="../Page/dashboard.html">Dashboard</a></li>
+                <li class="bleu"><a href="../index.html">Me déconnecter</a></li>
+            </ul>    
+        </div>
+    </nav>    
+    <div class="wrapper">
+        <h1>Créer un évenement</h1>
+        <p id="error-message">Remplissez tous les champs</p>
+            <form id="form">
+             <div class="incorrect">
+                <p>Titre de l’évenèment :</p>
+                <label for="évenement-input"></label>
+                <input type="text" name="firstname" id="firstname-input" placeholder="Firstname">
+             </div>
+             <div>
+                <p>Image:</p>
+                <label for="email-input"></label>
+                <input type="upload" name="image" id="image-input" placeholder="Image">
+             </div>
+             <div>
+                <p>Date:</p>
+                <label for="password-input"></label>
+                <input type="date" name="date" id="date-input" placeholder="Date">
+             </div>
+             <div>
+                <p>Description :</p>
+                <label for="description-input"></label>
+                <input type="texte" name="description" id="description-input" placeholder="Description">
+             </div> 
+             <div>
+                <p>Lieu :</p>
+                <label for="lieu-input"></label>
+                <input type="texte" name="lieu" id="lieu-input" placeholder="Lieu">
+             </div> 
+             <button type="submit">Se connecter</button>       
+            </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription évenèment</title>
+    <link rel="stylesheet" href="../css/form.css">  
+</head>
+<body ng-controller="InscriptionEventController">
+    <!-- <nav class="navbar">
+        <a href="index.html" class="logo">e-MMI</a>
+    </nav> -->
+    <section> 
+            <div class="test" id="nocolor">
+               <img src="../image/Rectangle 8.png">
+            </div>
+        <div class="wrapper">
+          <h1>Mon évent</h1>
+          <p id="error-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut </p>
+              <form id="form" ng-submit="submitForm()">
+               <div class="incorrect">
+                  <label for="nom-input">Nom: </label>
+                  <input type="text" id="nom" ng-model="formData.nom">
+               </div>
+               <div>
+                  <label for="prenom-input">Prénom</label>
+                  <input type="text" id="prenom-input" ng-model="formData.password">
+               </div> 
+               <div>
+                <label for="annee">Année filière</label>
+                <input type="text" id="annee-input" ng-model="formData.annee">
+               </div> 
+               <div>
+                <label for="email">Email</label>
+                <input type="email" id="mail-input" ng-model="formData.mail">
+             </div> 
+               <button type="submit">M'inscrire</button>       
+              </form>
+            </div>
+      </section> 
+    
+</body>
+</html>
