@@ -5,21 +5,26 @@
 
 namespace App\Controller;
 
-use App\Form\EventType;
+use App\Entity\Event;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Entity\Event;
-use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use App\Form\EventType;
+
+
 
 class EventController extends AbstractController
 {
     private $entityManager;
+    private $serializer;
 
-    public function __construct(EntityManagerInterface $entityManager)
+    public function __construct(EntityManagerInterface $entityManager, SerializerInterface $serializer)
     {
         $this->entityManager = $entityManager;
+        $this->serializer = $serializer;
     }
 
 
@@ -29,7 +34,7 @@ class EventController extends AbstractController
     public function index(): Response
     {
         $events = $this->entityManager->getRepository(Event::class)->findAll();
-        return $this->json($events);
+        return $this->json($events, 200, [], ['groups' => 'event:read']);
     }
 
     /**
@@ -43,9 +48,11 @@ class EventController extends AbstractController
             throw $this->createNotFoundException('The event does not exist');
         }
 
-        return $this->json($event);
-    }
+        $jsonContent = $this->serializer->serialize($event, 'json', ['groups' => 'event:read']);
 
+        return new Response($jsonContent, Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    }
+    
     /**
      * @Route("/events/create", name="event_create", methods={"GET", "POST"})
      */
@@ -58,10 +65,6 @@ class EventController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setCreatedAt(new \DateTime()); // Set the created_at field
-
-            // Assuming you have a way to get the current user
-            $user = $this->getUser();
-            $event->setOrganizer($user); // Set the organizer field
 
             $entityManager = $this->entityManager;
             $entityManager->persist($event);
@@ -83,7 +86,7 @@ class EventController extends AbstractController
         $data = json_decode($request->getContent(), true);
         // Update event properties from $data
         $this->entityManager->flush();
-        return $this->json($event);
+        return $this->json($event, 200, [], ['groups' => 'event:read']);
     }
 
     /**

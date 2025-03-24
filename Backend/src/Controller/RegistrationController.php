@@ -50,4 +50,25 @@ class RegistrationController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+
+    // /**
+    //  * @Route("/register", name="app_register", methods={"POST"})
+    //  */
+    // public function register(Request $request, UserPasswordEncoderInterface $encoder): Response
+    // {
+    //     $data = json_decode($request->getContent(), true);
+
+    //     $user = new User();
+    //     $user->setUsername($data['username']);
+    //     $user->setEmail($data['email']);
+    //     $user->setPassword($encoder->encodePassword($user, $data['password']));
+
+    //     $entityManager = $this->getDoctrine()->getManager();
+    //     $entityManager->persist($user);
+    //     $entityManager->flush();
+
+    //     return new Response('User registered successfully', Response::HTTP_CREATED);
+    // }
+
 }
