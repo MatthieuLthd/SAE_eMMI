@@ -2,11 +2,15 @@
 
 namespace App\Security;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
 use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
@@ -22,19 +26,39 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
-    public function __construct(private UrlGeneratorInterface $urlGenerator)
+    private $entityManager;
+    private $urlGenerator;
+    private $userProvider;
+
+    public function __construct(UrlGeneratorInterface $urlGenerator, EntityManagerInterface $entityManager, UserProviderInterface $userProvider)
     {
+        $this->urlGenerator = $urlGenerator;
+        $this->entityManager = $entityManager;
+        $this->userProvider = $userProvider;
     }
 
     public function authenticate(Request $request): Passport
     {
         $email = $request->request->get('email', '');
+        $password = $request->request->get('password', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
 
+        $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
+
+        if (!$user) {
+            throw new CustomUserMessageAuthenticationException('Email could not be found.');
+        }
+
+        if (!$user->isActive()) {
+            throw new CustomUserMessageAuthenticationException('Votre compte est désactivé.');
+        }
+
         return new Passport(
-            new UserBadge($email),
-            new PasswordCredentials($request->request->get('password', '')),
+            new UserBadge($email, function ($userIdentifier) {
+                return $this->userProvider->loadUserByIdentifier($userIdentifier);
+            }),
+            new PasswordCredentials($password),
             [
                 new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token')),
                 new RememberMeBadge(),
@@ -48,9 +72,7 @@ class LoginAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
-        // For example:
-        // return new RedirectResponse($this->urlGenerator->generate('some_route'));
-        throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+        return new RedirectResponse($this->urlGenerator->generate('app_dashboard'));
     }
 
     protected function getLoginUrl(Request $request): string

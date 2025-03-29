@@ -1,1 +1,1 @@
-app.service('EventService', function())
+var app = angular.module('myApp', ['ngRoute']);

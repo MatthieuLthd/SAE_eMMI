@@ -1,8 +1,5 @@
 <?php
 
-
-// src/Controller/EventController.php
-
 namespace App\Controller;
 
 use App\Entity\Event;
@@ -14,8 +11,6 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Serializer\SerializerInterface;
 use App\Form\EventType;
 
-
-
 class EventController extends AbstractController
 {
     private $entityManager;
@@ -26,7 +21,6 @@ class EventController extends AbstractController
         $this->entityManager = $entityManager;
         $this->serializer = $serializer;
     }
-
 
     /**
      * @Route("/events", name="events_index", methods={"GET"})
@@ -52,7 +46,7 @@ class EventController extends AbstractController
 
         return new Response($jsonContent, Response::HTTP_OK, ['Content-Type' => 'application/json']);
     }
-    
+
     /**
      * @Route("/events/create", name="event_create", methods={"GET", "POST"})
      */
@@ -66,9 +60,8 @@ class EventController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $event->setCreatedAt(new \DateTime()); // Set the created_at field
 
-            $entityManager = $this->entityManager;
-            $entityManager->persist($event);
-            $entityManager->flush();
+            $this->entityManager->persist($event);
+            $this->entityManager->flush();
 
             return $this->redirectToRoute('event_show', ['id' => $event->getId()]);
         }
@@ -79,23 +72,48 @@ class EventController extends AbstractController
     }
 
     /**
-     * @Route("/events/{id}/update", name="event_update", methods={"PUT"})
+     * @Route("/events/{id}/update", name="event_update", methods={"GET", "POST"})
      */
-    public function update(Request $request, Event $event): Response
+    public function update(Request $request, int $id): Response
     {
-        $data = json_decode($request->getContent(), true);
-        // Update event properties from $data
-        $this->entityManager->flush();
-        return $this->json($event, 200, [], ['groups' => 'event:read']);
+        $event = $this->entityManager->getRepository(Event::class)->find($id);
+
+        if (!$event) {
+            throw $this->createNotFoundException('The event does not exist');
+        }
+
+        $form = $this->createForm(EventType::class, $event);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->flush();
+
+            return $this->redirectToRoute('app_dashboard');
+        }
+
+        return $this->render('event/update.html.twig', [
+            'form' => $form->createView(),
+            'event' => $event,
+        ]);
     }
 
     /**
-     * @Route("/events/{id}/delete", name="event_delete", methods={"DELETE"})
+     * @Route("/events/{id}/delete", name="event_delete", methods={"POST"})
      */
-    public function delete(Event $event): Response
+    public function delete(Request $request, int $id): Response
     {
-        $this->entityManager->remove($event);
-        $this->entityManager->flush();
-        return new Response(null, Response::HTTP_NO_CONTENT);
+        $event = $this->entityManager->getRepository(Event::class)->find($id);
+
+        if (!$event) {
+            throw $this->createNotFoundException('The event does not exist');
+        }
+
+        if ($this->isCsrfTokenValid('delete'.$event->getId(), $request->request->get('_token'))) {
+            $this->entityManager->remove($event);
+            $this->entityManager->flush();
+        }
+
+        return $this->redirectToRoute('app_dashboard');
     }
 }

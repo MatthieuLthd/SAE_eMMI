@@ -5,4 +5,72 @@
 {% block body %}
     <h1>{{ title }}</h1>
     <!-- Ajoutez ici le contenu supplémentaire de votre tableau de bord -->
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <h2>Statistiques</h2>
+        <p>Nombre d'événements créés : {{ eventCount }}</p>
+        <p>Nombre d'inscriptions : {{ userCount }}</p>
+    {% endif %}
+
+    <h2>Liste des événements</h2>
+    <ul>
+        {% for event in events %}
+            <li>
+                <h3>{{ event.title }}</h3>
+                <p>{{ event.description }}</p>
+                <p>Lieu : {{ event.location }}</p>
+                <p>Date : {{ event.date|date('d/m/Y H:i') }}</p>
+            </li>
+        {% else %}
+            <li>Aucun événement disponible.</li>
+        {% endfor %}
+    </ul>
+
+    {% if app.user %}
+        <h2>Mes événements</h2>
+        <ul>
+            {% for event in userEvents %}
+                <li>
+                    <h3>{{ event.title }}</h3>
+                    <p>{{ event.description }}</p>
+                    <p>Lieu : {{ event.location }}</p>
+                    <p>Date : {{ event.date|date('d/m/Y H:i') }}</p>
+                    <button onclick="location.href='{{ path('event_update', {'id': event.id}) }}'">Modifier</button>
+                    <form action="{{ path('event_delete', {'id': event.id}) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ event.id) }}">
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </li>
+            {% else %}
+                <li>Vous n'avez créé aucun événement.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if is_granted('ROLE_ADMIN') %}
+        <h2>Liste des utilisateurs</h2>
+        <ul>
+            {% for user in users %}
+                <li>
+                    <p>Nom d'utilisateur : {{ user.username }}</p>
+                    <p>Email : {{ user.email }}</p>
+                    <p>Statut : {{ user.isActive ? 'Actif' : 'Inactif' }}</p>
+                    <form action="{{ path('user_activate', {'id': user.id}) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('activate' ~ user.id) }}">
+                        <button type="submit" {% if user.isActive %}disabled{% endif %}>Activer</button>
+                    </form>
+                    <form action="{{ path('user_deactivate', {'id': user.id}) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('deactivate' ~ user.id) }}">
+                        <button type="submit" {% if not user.isActive %}disabled{% endif %}>Désactiver</button>
+                    </form>
+                    <form action="{{ path('user_delete', {'id': user.id}) }}" method="post" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                        <button type="submit">Supprimer</button>
+                    </form>
+                </li>
+            {% else %}
+                <li>Aucun utilisateur inscrit.</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
 {% endblock %}
