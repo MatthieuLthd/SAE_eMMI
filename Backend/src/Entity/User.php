@@ -19,19 +19,19 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\Id
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
-     * @Groups("event:read")
+     * @Groups("user:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups("event:read")
+     * @Groups("user:read")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
-     * @Groups("event:read")
+     * @Groups("user:read")
      */
     private $email;
 
@@ -42,11 +42,13 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     /**
      * @ORM\Column(type="boolean")
+     * @Groups("user:read")
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="string", length=10)
+     * @Groups("user:read")
      */
     private $roles;
 

@@ -20,6 +20,12 @@
                 <p>{{ event.description }}</p>
                 <p>Lieu : {{ event.location }}</p>
                 <p>Date : {{ event.date|date('d/m/Y H:i') }}</p>
+                {% if app.user %}
+                <form action="{{ path('event_register', {'id': event.id}) }}" method="post" style="display:inline;">
+                    <input type="hidden" name="_token" value="{{ csrf_token('register' ~ event.id) }}">
+                    <button type="submit">S'inscrire</button>
+                </form>
+        {% endif %}
             </li>
         {% else %}
             <li>Aucun événement disponible.</li>

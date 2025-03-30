@@ -70,12 +70,18 @@ class Event
      */
     private $comments;
 
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\Inscription", mappedBy="event", cascade={"remove"})
+     * @Groups({"event:read"})
+     */
+    private $inscriptions;
+
     public function __construct()
     {
         $this->comments = new ArrayCollection();
+        $this->inscriptions = new ArrayCollection();
     }
 
-    // ...existing code...
 
     /**
      * @return Collection|Comment[]
@@ -106,6 +112,41 @@ class Event
 
         return $this;
     }
+
+
+
+    /**
+     * @return Collection|Inscription[]
+     */
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function addInscription(Inscription $inscription): self
+    {
+        if (!$this->inscriptions->contains($inscription)) {
+            $this->inscriptions[] = $inscription;
+            $inscription->setEvent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInscription(Inscription $inscription): self
+    {
+        if ($this->inscriptions->removeElement($inscription)) {
+            // Set the owning side to null (unless already changed)
+            if ($inscription->getEvent() === $this) {
+                $inscription->setEvent(null);
+            }
+        }
+
+        return $this;
+    }
+
+
+    
 
     public function getId(): ?int
     {

@@ -52,6 +52,10 @@ class DashboardController extends AbstractController
         ]);
     }
 
+// ============================        API REST        =================================== //
+
+
+    // Renvoie tous les events avec toutes les infos
     /**
      * @Route("/api/events", name="api_events", methods={"GET"})
      */
@@ -62,31 +66,8 @@ class DashboardController extends AbstractController
         return new JsonResponse($data, Response::HTTP_OK, [], true);
     }
 
-    /**
-     * @Route("/api/users/{id}/events", name="api_user_events", methods={"GET"})
-     */
-    public function getUserEvents(int $id, EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
-    {
-        $user = $entityManager->getRepository(User::class)->find($id);
-        if (!$user) {
-            return new JsonResponse(['error' => 'User not found'], Response::HTTP_NOT_FOUND);
-        }
-
-        $userEvents = $entityManager->getRepository(Event::class)->findBy(['organizer' => $user]);
-        $data = $serializer->serialize($userEvents, 'json', ['groups' => 'event:read']);
-        return new JsonResponse($data, Response::HTTP_OK, [], true);
-    }
-
-    /**
-     * @Route("/api/users", name="api_users", methods={"GET"})
-     */
-    public function getUsers(EntityManagerInterface $entityManager, SerializerInterface $serializer): JsonResponse
-    {
-        $users = $entityManager->getRepository(User::class)->findAll();
-        $data = $serializer->serialize($users, 'json', ['groups' => 'user:read']);
-        return new JsonResponse($data, Response::HTTP_OK, [], true);
-    }
-
+    
+    // Renvoie toutes les statistiques
     /**
      * @Route("/api/statistics", name="api_statistics", methods={"GET"})
      */

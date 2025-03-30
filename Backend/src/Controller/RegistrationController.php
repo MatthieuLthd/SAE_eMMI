@@ -52,23 +52,25 @@ class RegistrationController extends AbstractController
     }
 
 
-    // /**
-    //  * @Route("/register", name="app_register", methods={"POST"})
-    //  */
-    // public function register(Request $request, UserPasswordEncoderInterface $encoder): Response
-    // {
-    //     $data = json_decode($request->getContent(), true);
+    // ============================        API REST        =================================== //
 
-    //     $user = new User();
-    //     $user->setUsername($data['username']);
-    //     $user->setEmail($data['email']);
-    //     $user->setPassword($encoder->encodePassword($user, $data['password']));
+    /**
+     * @Route("/api/register", name="api_register", methods={"POST"})
+     */
+    public function apiRegister(Request $request, UserPasswordHasherInterface $passwordHasher, EntityManagerInterface $entityManager): Response
+    {
+        $data = json_decode($request->getContent(), true);
 
-    //     $entityManager = $this->getDoctrine()->getManager();
-    //     $entityManager->persist($user);
-    //     $entityManager->flush();
+        $user = new User();
+        $user->setUsername($data['username']);
+        $user->setEmail($data['email']);
+        $user->setPassword($passwordHasher->hashPassword($user, $data['password']));
 
-    //     return new Response('User registered successfully', Response::HTTP_CREATED);
-    // }
+        // Use the injected EntityManagerInterface
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return new Response('User registered successfully', Response::HTTP_CREATED);
+    }
 
 }

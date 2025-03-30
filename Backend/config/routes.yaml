@@ -1,6 +1,22 @@
+# ==================   Gestion du dashboard (DashboardController)   =========================
+
 app_dashboard:
     path: /dashboard
     controller: App\Controller\DashboardController::index
+
+# REST ===== 
+api_events:
+    path: /api/events
+    controller: App\Controller\DashboardController::getEvents
+
+api_statistics:
+    path: /api/statistics
+    controller: App\Controller\DashboardController::getStatistics
+
+
+
+
+# ==================   Gestion des événements (EventController)   =========================
 
 events:
     path: /events
@@ -27,6 +43,72 @@ event_delete:
     controller: App\Controller\EventController::delete
     methods: [POST]
 
+event_register:
+    path: /events/{id}/register
+    controller: App\Controller\EventController::register
+    methods: [POST]
+
+# REST =====   
+api_event_show:
+    path: /api/events/{id}
+    controller: App\Controller\EventController::apiShow
+    methods: [GET]
+
+api_event_create:
+    path: /api/events
+    controller: App\Controller\EventController::apiCreate
+    methods: [POST]
+
+api_event_update:
+    path: /api/events/{id}
+    controller: App\Controller\EventController::apiUpdate
+    methods: [PUT]
+
+api_event_delete:
+    path: /api/events/{id}
+    controller: App\Controller\EventController::apiDelete
+    methods: [DELETE]
+
+api_event_register:
+    path: /api/eventRegister
+    controller: App\Controller\EventController::apiRegister
+    methods: [POST]
+
+
+
+# ==================   Gestion des comptes (LoginController)  =========================
+
+app_login:
+    path: /login
+    controller: App\Controller\LoginController::login
+    methods: [GET, POST]
+
+app_logout:
+    path: /logout
+    controller: App\Controller\LoginController::logout
+
+# REST ===== 
+api_login:
+    path: /api/login
+    controller: App\Controller\LoginController::apiLogin
+    methods: [GET, POST]
+
+
+
+
+# ==================   Gestion de l'inscription (RegistrationController)  =========================
+
+# REST ===== 
+api_register:
+    path: /api/register
+    controller: App\Controller\RegistrationController::apiRegister
+    methods: [GET, POST]
+
+
+
+
+# ==================   Gestion des utilisateurs (UserController)   =========================
+
 user_activate:
     path: /users/{id}/activate
     controller: App\Controller\UserController::activate
@@ -42,18 +124,15 @@ user_delete:
     controller: App\Controller\UserController::delete
     methods: [POST]
 
+# REST ===== 
+api_user_events:
+    path: /api/users/{id}/events
+    controller: App\Controller\UserController::getUserEvents
 
-# Routes pour la gestion des comptes
-app_login:
-    path: /login
-    controller: App\Controller\LoginController::login
-    methods: [GET, POST]
+api_users:
+    path: /api/users
+    controller: App\Controller\UserController::getUsers
 
-app_logout:
-    path: /logout
-    controller: App\Controller\LoginController::logout
 
-app_register:
-    path: /register
-    controller: App\Controller\RegistrationController::register
-    methods: [GET, POST]
+
+
