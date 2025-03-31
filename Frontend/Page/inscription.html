@@ -1,40 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>inscription</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="app.js"></script>
+    <script src = "../Controllers/inscription.js"></script>
     <link rel="stylesheet" href="../css/form.css"> 
 </head>
-<body ng-controller="formInscriptionController">
+<body>
    <section>
-    <div class="wrapper">
+    <div class="wrapper"  ng-controller="formInscriptionController">
         <h1>M'inscrire</h1>
         <p id="error-message">Remplissez tous les champs</p>
-            <form id="form" ng-submit="submitForm()">
+            <form id="form"  ng-submit="register()">
              <div class="incorrect">
                <label for="user-input">Nom d'utilisateur</label>
-               <input type="text" id="utilisateur" ng-model="users.user">
+               <input type="text" id="user-input" ng-model="user.user">
              </div>
              <div>
                <label for="email-input">Email</label>
-               <input type="text" id="email" ng-model="users.mail">
+               <input type="text" id="email-input" ng-model="user.mail">
              </div>
              <div>
                <label for="password-input">Password</label>
-               <input type="password" id="password" ng-model="users.password">
+               <input type="password" id="password-input" ng-model="user.password">
              </div>
              <div>
-               <label for="password-input">Password</label>
-               <input type="password" id="password" ng-model="users.password">
+               <label for="repeat-password">Password</label>
+               <input type="password" id="repeat-password" ng-model="user.repeat_password">
              </div> 
              <button type="submit">Se connecter</button>       
             </form>
-           
          </div> 
          <div class="test">
-            <p>Vous avez déjà un compte ?</p> 
+            <p>Vous avez déjà un compte ?</p>
+            <br> 
             <a href ="../Page/login.html">Me connecter</a>
          </div>
       </section>

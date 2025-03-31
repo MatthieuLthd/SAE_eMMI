@@ -1,11 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" ng-app>
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Créer un évenement</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
     <link rel="stylesheet" href="../css/navbar.css">
+    <script src ="../Configuration/app.js"></script>
+    <script src ="../service/creerEventservice.js"></script>
+    <script src ="../Controllers/creerevent.js"></script>
 </head>
 <body>
     <nav class="navbar">
@@ -14,38 +18,38 @@
             <ul>
                 <li><a href="../Page/créerevent.html">Créer un évenèment</a></li>
                 <li><a href="../Page/dashboard.html">Dashboard</a></li>
-                <li class="bleu"><a href="../index.html">Me déconnecter</a></li>
+                <button class="bleu" ng-if="user" ng-click="logout()">Déconnexion</button>
             </ul>    
         </div>
     </nav>    
-    <div class="wrapper">
+    <div class="wrapper" ng-controller="creerEventController">
         <h1>Créer un évenement</h1>
         <p id="error-message">Remplissez tous les champs</p>
-            <form id="form">
+            <form id="form" ng-submit="createEvent()">
              <div class="incorrect">
                 <p>Titre de l’évenèment :</p>
-                <label for="évenement-input"></label>
-                <input type="text" name="firstname" id="firstname-input" placeholder="Firstname">
+                <label for="titre"></label>
+                <input type="text" id="titre" name="title" ng-model="event.title" placeholder="Titre">
              </div>
-             <div>
+             <!-- <div>
                 <p>Image:</p>
-                <label for="email-input"></label>
-                <input type="upload" name="image" id="image-input" placeholder="Image">
-             </div>
+                <label for="image-input"></label>
+                <input type="file" id="image-input" name="image" id="image-input" file-model="event.image" placeholder="Image">
+             </div> -->
              <div>
                 <p>Date:</p>
-                <label for="password-input"></label>
-                <input type="date" name="date" id="date-input" placeholder="Date">
+                <label for="date-input"></label>
+                <input type="date" id="date-input" name="date" ng-model="event.date" placeholder="Date">
              </div>
              <div>
                 <p>Description :</p>
                 <label for="description-input"></label>
-                <input type="texte" name="description" id="description-input" placeholder="Description">
+                <input type="text" id="description-input" name="description" ng-model="event.description" placeholder="Description">
              </div> 
              <div>
                 <p>Lieu :</p>
                 <label for="lieu-input"></label>
-                <input type="texte" name="lieu" id="lieu-input" placeholder="Lieu">
+                <input type="text" id="lieu-input" name="lieu" ng-model="event.location" placeholder="Lieu">
              </div> 
              <button type="submit">Se connecter</button>       
             </form>

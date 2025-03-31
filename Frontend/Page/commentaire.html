@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" ng="myApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Récapitulatif</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src = "../Configuration/app.js"></script>
+    <script src = "../service/commentaireService.js"></script>
+    <script src = "../Controllers/commentaire.js"></script>
+    <link rel = "stylesheet" type = "text/css" href="../css/navbar.css">
+    <link rel = "stylesheet" type = "text/css" href="../css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="../index.html" class="logo">e-MMI</a>
+        <div class="nav-links">
+            <ul>
+                <li><a href="../Page/créerevent.html">Créer un évenèment</a></li>
+                <li><a href="../Page/dashboard.html">Dashboard</a></li>
+                <button class="bleu" ng-if="user" ng-click="logout()">Me déconnecter</button>
+            </ul>    
+        </div>
+    </nav>
+    <section ng-controller="CommentaireController">
+        <form ng-submit="submitComment()">
+            <label for="commentaire">Ton commentaire:</label>
+            <textarea id="commentaire" name="commentaire" ng-model="newComment.content" rows="4" cols="50" placeholder="Partage ton avis ici..."></textarea>
+            <button type="submit">Envoyer</button>
+        </form>
+    </section>
+    <section class="commentaire">
+        <h3>Découvre les avis des autres !</h3>
+        <div ng-repeat="comment in comments">
+            <p>{{ comment.content }}</p>
+        </div>   
+    </section>
+
+</body>
+</html>

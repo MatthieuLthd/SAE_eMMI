@@ -1,11 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NavBar</title>
+    <title>Page d'accueil</title>
     <link rel="stylesheet" href="css/navbar.css">
-    <link rel="stylesheet" href="css/style.css">    
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/footer.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="Controllers/index.js"></script>
+ 
 </head>
 <body ng-controller="evenement">
 <nav class="navbar">
@@ -25,6 +31,11 @@
     <div class="tsecondaire">
       <h2>ÉVENEMENTS À VENIR</h2>
     </div>
+    <div class="filtre">
+      <button ng-click="filter = ''; filterEvents()">Tous</button>
+      <button ng-click="filter = 'location'; filterEvents()">Lieu</button>
+      <button ng-click="filter = 'date'; filterEvents()">Date</button>
+    </div>
     <div>
       <div>
         <ul>
@@ -38,6 +49,22 @@
       </div>
     </div>
   </section>
+  <section class="presentation">
+    <div>
+      <img src="image/image.png" alt="Logo e-MMI">
+    </div>
+    <div>
+      <h2>Qu'est-ce que e-MMI ?</h2><br>
+      <p>e-MMI est une plateforme qui connecte les étudiants et les professionnels du domaine MMI. 
+        Elle permet de partager des événements, des projets et des opportunités de collaboration.</p>
+      <p>Notre objectif est de créer un réseau dynamique et interactif pour les étudiants et les professionnels MMI.</p>
+    </div>
+  </section>
 </body>
+<footer>
+  <div>
+    <p>© 2021 e-MMI</p>
+  </div>
+</footer>
 </html>
 

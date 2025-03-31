@@ -1,24 +1,38 @@
+//Tous les rêquetes http sont faites, il faut juste que tu rajoutes l'url de l'api.
+
 app.controller('DashboardController', function($scope, evenementService)
 {
-    $scope.events = 
-    [
-        {id:'', title:'',description:'',location:'',date:''},
-        {id:'', title:'',description:'',location:'',date:''},
-    ];
-
-    $scope.editingEvent = null;
-
-    $scope.editingEvent = function(event)
+    function loadEvents()
     {
-        $scope.editingEvent = angular.copy(event);
-    };
-    
-    $scope.saveEvent = function()
-    {
-        evenementService.updateEvent($scope.editingEvent).then(function(response)
+        evenementService.getEvents().then(function(response)
         {
-            alert('L\'évènement à été modifé');
-        }
-    )
+            $scope.events = response.data;
+        })
     }
 })
+loadEvents();
+$scope.modifEvent = function(event) 
+{
+    $scope.modifierEvent = angular.copy(event);
+};
+$scope.saveEvent = function()
+{
+    evenementService.updateEvent($scope.modifierEvent).then((function(response)
+    {
+        alert('L\'événement a été mis à jour');
+        loadEvents();
+    }
+    ));
+};
+
+
+$scope.supprEvent = function(event)
+{
+    evenementService.deleteEvent(event).then(function(response)
+    {
+        alert('L\'évenement a été supprimé');
+        loadEvents();
+    })
+}
+
+

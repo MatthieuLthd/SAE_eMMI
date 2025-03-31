@@ -1,15 +1,6 @@
-app.service('Authentification', function($http)
-{
-    this.getCurrentUser = function()
-    {
-        return $http.get('http://ton-api-symfony.com/api/user');
-    };
+//Tous les rêquetes http sont faites, il faut juste que tu rajoutes l'url de l'api.
 
-    this.logout = function()
-    {
-        return $http.post('http://ton-api-symfony.com/api/logout');
-    };
-});
+var app = angular.module('myApp', []);
 
 app.controller('UserController', function($scope, Authentification)
 {
@@ -17,10 +8,11 @@ app.controller('UserController', function($scope, Authentification)
 
     Authentification.getCurrentUser().then(function(response)
     {
-        $scope.user = response.data;
+       $scope.user = response.data;
     }, function(error)
 {
     console.warn('Utilisateur non connecté');
+    $scope.user = null;
 });
     $scope.logout = function()
     {

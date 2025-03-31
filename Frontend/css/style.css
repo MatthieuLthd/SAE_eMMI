@@ -1,0 +1,51 @@
+body
+{
+    margin: 0;
+    padding: 0;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 500px; 
+    margin: 0 auto;
+}
+
+textarea {
+    width: 400px; 
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    resize: none;
+}
+
+form button 
+{
+    margin-top: 10px;
+    border: none;
+    border-radius: 1000px;
+    padding: .85em 4em;
+    background-color: #88CDFF;
+    font: inherit;
+    font-weight: 600;
+    color: black;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 150ms ease;
+}
+.commentaire
+{
+    max-width: 1000px;
+    margin: 20px auto;
+    padding: 10px;
+}
+
+h3 {
+    margin-top: 20px;
+}
+
+div[ng-repeat="comment in comments"] {
+    padding: 15px;
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}

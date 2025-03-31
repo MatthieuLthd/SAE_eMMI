@@ -15,7 +15,15 @@ app.config(['$routeProvider', function($routeProvider)
     .when('/login', {
             templateUrl: '../Page/login.html',
             controller: 'formLoginController'
-        })    
+        }) 
+    .when('/creerEvent', {
+            templateUrl: '../Page/creerEvent.html',
+            controller: 'creerEventController'
+        })  
+    .when('/commentaire', {
+            templateUrl: '../Page/commentaire.html',
+            controller: 'CommentaireController'
+        })            
         .otherwise
         ({
            redirectTo: '/'
@@ -32,4 +40,12 @@ app.controller('formInscriptionController', function($scope) {
 
 app.controller('formLoginController', function($scope) {
     $scope.message = "Page de connexion";
+});
+
+app.controller('creerEventController', function($scope) {
+    $scope.message = "Créer un évenement";
+});
+
+app.controller('CommentaireController', function($scope) {
+    $scope.message = "Postez un commentaire";
 });

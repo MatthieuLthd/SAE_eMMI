@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+.inscription {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .inscription .div {
+    background-color: #ffffff;
+    width: 1280px;
+    height: 832px;
+    position: relative;
+  }
+  
+  .inscription .rectangle {
+    position: absolute;
+    width: 667px;
+    height: 565px;
+    top: 140px;
+    left: 53px;
+    background-color: #d9d9d9;
+    border-radius: 31px;
+  }
+  
+  .inscription .text-wrapper {
+    position: absolute;
+    width: 320px;
+    height: 75px;
+    top: 242px;
+    left: 797px;
+    font-family: "Poppins-Medium", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .inscription .p {
+    position: absolute;
+    width: 379px;
+    height: 75px;
+    top: 317px;
+    left: 790px;
+    font-family: "Poppins-Medium", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .inscription .menu-text {
+    display: inline-flex;
+    height: 47px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px 23px;
+    position: absolute;
+    top: 423px;
+    left: 918px;
+    background-color: #88cdff;
+    border-radius: 20px;
+  }
+  
+  .inscription .menu {
+    position: relative;
+    width: fit-content;
+    margin-top: -9.50px;
+    margin-bottom: -7.50px;
+    font-family: "Poppins-Medium", Helvetica;
+    font-weight: 500;
+    color: #000000;
+    font-size: 16px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .inscription .LOGO {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 22px;
+    position: absolute;
+    top: 12px;
+    left: 53px;
+  }
+  
+  .inscription .text-wrapper-2 {
+    position: relative;
+    width: fit-content;
+    margin-top: -1.00px;
+    font-family: "Poppins";
+    font-weight: 1000;
+    color: #000000;
+    font-size: 48px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+
+  body {
+    font-family: "Poppins-Medium", Helvetica, Arial, sans-serif;
+  }
+  
+  .content {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    min-height: 832px;
+  }
+  
+  header {
+    padding: 12px 53px;
+  }
+  
+  .event-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 790px;
+    padding-top: 242px;
+  }
+  
+  h2.text-wrapper {
+    font-size: 25px;
+    margin-bottom: 20px;
+  }
+  
+  .event-description {
+    max-width: 379px;
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 31px;
+  }
+  
+  button.menu-text {
+    margin-top: 10px;
+    border: none;
+    border-radius: 1000px;
+    padding: .85em 4em;
+    background-color: #88CDFF;
+    font: inherit;
+    font-weight: 600;
+    color: black;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 150ms ease;
+    font-family: 'Poppins';
+  }
+  
+  button.menu-text:hover,
+  button.menu-text:focus {
+    background-color: #5eb8ff;
+  }
+  
+  button.menu-text:focus {
+    outline: 2px solid #4a90e2;
+  }
+  
+  @media (max-width: 1280px) {
+    .content {
+      padding: 0 20px;
+    }
+  
+    .event-details {
+      padding-left: 0;
+      align-items: center;
+      text-align: center;
+    }
+  
+    .rectangle {
+      position: static;
+      margin: 0 auto 20px;
+      max-width: 100%;
+      height: auto;
+      aspect-ratio: 667 / 565;
+    }
+  }
+  

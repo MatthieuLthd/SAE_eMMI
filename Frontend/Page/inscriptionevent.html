@@ -1,43 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inscription évenèment</title>
-    <link rel="stylesheet" href="../css/form.css">  
-</head>
-<body ng-controller="InscriptionEventController">
-    <!-- <nav class="navbar">
-        <a href="index.html" class="logo">e-MMI</a>
-    </nav> -->
-    <section> 
-            <div class="test" id="nocolor">
-               <img src="../image/Rectangle 8.png">
-            </div>
-        <div class="wrapper">
-          <h1>Mon évent</h1>
-          <p id="error-message">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut </p>
-              <form id="form" ng-submit="submitForm()">
-               <div class="incorrect">
-                  <label for="nom-input">Nom: </label>
-                  <input type="text" id="nom" ng-model="formData.nom">
-               </div>
-               <div>
-                  <label for="prenom-input">Prénom</label>
-                  <input type="text" id="prenom-input" ng-model="formData.password">
-               </div> 
-               <div>
-                <label for="annee">Année filière</label>
-                <input type="text" id="annee-input" ng-model="formData.annee">
-               </div> 
-               <div>
-                <label for="email">Email</label>
-                <input type="email" id="mail-input" ng-model="formData.mail">
-             </div> 
-               <button type="submit">M'inscrire</button>       
-              </form>
-            </div>
-      </section> 
-    
-</body>
+<html lang="en" ng="myApp">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Inscription à un évenèment</title>
+    <link rel="stylesheet" href="../css/globals.css">
+    <link rel="stylesheet" href="../css/event.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="../Controllers/inscriptionevent.js"></script>
+  </head>
+  <body ng-controller="InscriptionEventController">
+    <main class="inscription">
+      <div class="content">
+        <header>
+          <div class="LOGO">
+            <h1 class="text-wrapper-2">{{ event.name }}</h1>
+          </div>
+        </header>
+        <section class="event-details">
+          <div class="rectangle" role="img" aria-label="Event image" ng-style="{'background-image': 'url(' + event.image + ')'}"></div>
+          <h2 class="text-wrapper">{{ event.title }}</h2>
+          <br>
+          <p class="event-description">
+            {{ event.description }}
+          </p>
+          <button class="menu-text" type="button" ng-click="register()">
+            <span class="menu">M'inscrire</span>
+          </button>
+        </section>
+      </div>
+    </main>
+  </body>
 </html>

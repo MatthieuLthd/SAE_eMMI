@@ -1,0 +1,19 @@
+/* Rectangle 3 */
+footer 
+{
+    position: absolute;
+    width: 100%;
+    height: 159px;
+    left: -1px;
+    top: 1898px;
+    background: #88CDFF;
+}
+
+footer p
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+

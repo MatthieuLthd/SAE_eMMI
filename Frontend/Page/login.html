@@ -1,32 +1,35 @@
 <!DOCTYPE html>
-<html ng-app>
+<html  ng-app="myApp">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+    <script src="../Controllers/login.js"></script>
     <link rel="stylesheet" href="../css/style.css"> 
     <link rel="stylesheet" href="../css/form.css">   
 </head>
-<body ng-controller="formLoginController">
+<body >
 <section> 
-  <div class="wrapper">
+  <div class="wrapper" ng-controller="formLoginController">
     <h1>Se connecter</h1>
     <p id="error-message">Remplissez tous les champs</p>
         <form id="form" ng-submit="submitForm()">
          <div class="incorrect">
-            <label for="utilisateur-input">Nom d'utilisateur</label>
+            <label for="utilisateur">Nom d'utilisateur</label>
             <input type="text" id="utilisateur" ng-model="connexion.utilisateur">
          </div>
          <div>
             <label for="password-input">Password</label>
-            <input type="password" id="repeat-password-input" ng-model="connexion.password">
+            <input type="password" id="password-input" ng-model="connexion.password">
          </div> 
          <button type="submit">Se connecter</button>       
         </form>
       </div>
       <div class="test">
          <p>Vous n'avez pas de compte ?</p> 
+         <br>
          <a href ="../Page/inscription.html">M'inscrire</a>
       </div>
 </section> 

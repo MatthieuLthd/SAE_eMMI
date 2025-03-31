@@ -22,10 +22,11 @@
 }
 .logo 
 {
+    color: black;
     font-weight: 1000;
     font-size: 3em;
     font-family: 'Poppins';
-}
+} 
 .navbar .nav-links ul 
 {
     display: flex;
@@ -38,6 +39,21 @@
     font-size: 13px;
     font-weight: 500;
 }
+.navbar .nav-links ul li a
+{
+    color: black;
+    font-weight: 500;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+.navbar .nav-links ul li a:hover
+{
+    background-color: #EC5228;
+    color: white;
+    transition: 180ms ease;
+    padding: 10px;
+    
+}
 .bleu
 {
     background-color: #88CDFF;
@@ -46,6 +62,7 @@
     font-weight: 500;
     font-size: 12px;
     text-align: center;
+    border: none;
 } 
 /* Fin de la navbar */
 .accueil
@@ -93,13 +110,29 @@ span
     line-height: 96px;
     
 }
-/* Fin personnalisation accueil */
-
-/* Personnalisation évenement à venir */
 .tsecondaire
 {
     margin: 2em;
     text-align: left;
 }
 
-/* Fin Personnalisation évenement à venir */
+.filtre
+{
+    margin: 25px;
+
+}
+.filtre button
+{
+    border: solid 1px #EC5228;
+    background-color: white;
+    padding: 5px;
+    width: 10%;
+    border-radius: 15px;
+}
+.filtre button:hover
+{
+    background-color: #EC5228;
+    color: white;
+    transition: 280ms ease;
+    border-radius: 15px;
+}
