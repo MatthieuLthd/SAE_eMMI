@@ -133,6 +133,10 @@ api_users:
     path: /api/users
     controller: App\Controller\UserController::getUsers
 
+api_user_me:
+    path: /api/users/me
+    controller: App\Controller\UserController::getCurrentUser
+
 
 
 

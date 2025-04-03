@@ -5,15 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User</title>
     <link rel="stylesheet" href="../css/navbar.css">
-    <link rel="stylesheet" href="../ccs/footer.css">
+    <link rel="stylesheet" href="../css/footer.css">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
-    <script src = "../service/userService.js"></script>
+    <script src="../Configuration/app.js"></script>
     <script src="../Controllers/users.js"></script>
-    <script src="app.js"></script>
-    
 </head>
-<body>
+<body ng-controller="users">
     <nav class="navbar">
         <a href="../index.html" class="logo">e-MMI</a>
         <div class="nav-links">
@@ -24,38 +22,50 @@
             </ul>    
         </div>
     </nav>
-    <section class="accueil" ng-controller="UserController">
+    <section class="accueil">
         <h1 ng-if="user">Bienvenue, {{ user.username }}</h1>
         <a href="../Page/créerevent.html">Créer un évenèment</a>
-      </section>
-      <section class="event">
+    </section>
+        
+    <!-- Événements à venir -->
+    <section class="event">
         <div class="tsecondaire">
-          <h2>ÉVENEMENTS À VENIR</h2>
+            <h2>ÉVENEMENTS À VENIR</h2>
         </div>
-      </section> 
-      <div>
         <div>
-          <ul>
-            <li ng-repeat = "event in events">
-              <h3>{{ event.title }}</h3>
-              <p>{{ event.description }}</p>
-              <p>{{ event.location }}</p>
-              <p>{{ event.date }}</p>
-            </li>
-          </ul>
+            <ul>
+                <li ng-repeat="event in events">
+                    <h3>{{ event.title }}</h3>
+                    <p>Organisateur : {{ event.organizer.username }}</p>
+                    <p>Description : {{ event.description }}</p>
+                    <p>Lieu : {{ event.location }}</p>
+                    <p>Date : {{ event.date | date:'dd/MM/yyyy HH:mm' }}</p>
+                </li>
+            </ul>
         </div>
-      </div> 
-      <section class="event">
+    </section>
+
+    <!-- Mes inscriptions -->
+    <section class="event">
         <div class="tsecondaire">
-          <h2>MES INSCRIPTIONS</h2>
+            <h2>MES INSCRIPTIONS</h2>
         </div>
-      </section>
-       
-      
+        <div>
+            <ul>
+                <li ng-repeat="event in registeredEvents">
+                    <h3>{{ event.title }}</h3>
+                    <p>Organisateur : {{ event.organizer.username }}</p>
+                    <p>Description : {{ event.description }}</p>
+                    <p>Lieu : {{ event.location }}</p>
+                    <p>Date : {{ event.date | date:'dd/MM/yyyy HH:mm' }}</p>
+                </li>
+            </ul>
+        </div>
+    </section>
+    <footer>
+        <div>
+            <p>© 2025 e-MMI</p>
+        </div>
+    </footer>
 </body>
-<footer>
-  <div>
-    <p>© 2021 e-MMI</p>
-  </div>
-</footer>
 </html>

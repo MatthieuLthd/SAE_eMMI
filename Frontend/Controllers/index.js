@@ -5,10 +5,10 @@ app.service('evenementService', function ($http)
 {
     this.getEvents = function()
     {
-        return $http.get('http://ton-api-symfony.com/api/events'); // mettre  l'url de l'api, ça corresponds à la table events
+        return $http.get('http://localhost/SAE_eMMI/Backend/public/index.php/api/events'); // mettre  l'url de l'api, ça corresponds à la table events
     };
     this.getFilteredEvents = function(filter){
-        return $http.get('http://ton-api-symfony.com/api/events?filter=' + filter); // mettre  l'url de l'api, ça corresponds à la table events
+        return $http.get('http://localhost/SAE_eMMI/Backend/public/index.php/api/events?filter=' + filter); // mettre  l'url de l'api, ça corresponds à la table events
     }
 });
 

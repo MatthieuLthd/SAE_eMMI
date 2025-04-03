@@ -1,51 +1,54 @@
 var app = angular.module('myApp', ['ngRoute']);
 
-app.config(['$routeProvider', function($routeProvider)
-{
+// Configuration des routes
+app.config(['$routeProvider', function($routeProvider) {
     $routeProvider
-    .when('/user', 
-        {
+        .when('/user', { // Route pour la page utilisateur
             templateUrl: '../Page/user.html',
-            controller: 'UserController'
+            controller: 'users'
         })
-    .when('/inscription', {
+        .when('/inscription', { // Route pour la page d'inscription
             templateUrl: '../Page/inscription.html',
-            controller: 'formInscriptionController'
+            controller: 'isncription'
         })
-    .when('/login', {
+        .when('/login', { // Route pour la page de connexion
             templateUrl: '../Page/login.html',
-            controller: 'formLoginController'
-        }) 
-    .when('/creerEvent', {
+            controller: 'login'
+        })
+        .when('/creerEvent', { // Route pour la page de création d'événement
             templateUrl: '../Page/creerEvent.html',
-            controller: 'creerEventController'
-        })  
-    .when('/commentaire', {
+            controller: 'créerevent'
+        })
+        .when('/commentaire', { // Route pour la page des commentaires
             templateUrl: '../Page/commentaire.html',
-            controller: 'CommentaireController'
-        })            
-        .otherwise
-        ({
-           redirectTo: '/'
+            controller: 'commentaire'
+        })
+        .otherwise({ // Redirection par défaut
+            redirectTo: '/login'
         });
 }]);
 
-app.controller('UserController', function($scope) {
+// Contrôleur pour la page utilisateur
+app.controller('users', function($scope) {
     $scope.message = "Page utilisateur";
 });
 
+// Contrôleur pour la page d'inscription
 app.controller('formInscriptionController', function($scope) {
     $scope.message = "Page d'inscription";
 });
 
-app.controller('formLoginController', function($scope) {
+// Contrôleur pour la page de connexion
+app.controller('login', function($scope) {
     $scope.message = "Page de connexion";
 });
 
+// Contrôleur pour la page de création d'événement
 app.controller('creerEventController', function($scope) {
-    $scope.message = "Créer un évenement";
+    $scope.message = "Créer un événement";
 });
 
-app.controller('CommentaireController', function($scope) {
+// Contrôleur pour la page des commentaires
+app.controller('commentaire', function($scope) {
     $scope.message = "Postez un commentaire";
 });

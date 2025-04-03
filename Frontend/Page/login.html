@@ -12,13 +12,13 @@
 </head>
 <body >
 <section> 
-  <div class="wrapper" ng-controller="formLoginController">
+  <div class="wrapper" ng-controller="login">
     <h1>Se connecter</h1>
     <p id="error-message">Remplissez tous les champs</p>
         <form id="form" ng-submit="submitForm()">
          <div class="incorrect">
-            <label for="utilisateur">Nom d'utilisateur</label>
-            <input type="text" id="utilisateur" ng-model="connexion.utilisateur">
+            <label for="email">Email</label>
+            <input type="text" id="email" ng-model="connexion.email">
          </div>
          <div>
             <label for="password-input">Password</label>

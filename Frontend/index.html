@@ -41,9 +41,10 @@
         <ul>
           <li ng-repeat = "event in events">
             <h3>{{ event.title }}</h3>
-            <p>{{ event.description }}</p>
-            <p>{{ event.location }}</p>
-            <p>{{ event.date }}</p>
+            <p>Organisateur : {{ event.organizer.username }}</p>
+            <p>Description : {{ event.description }}</p>
+            <p>Lieu : {{ event.location }}</p>
+            <p>Date : {{ event.date }}</p>
           </li>
         </ul>
       </div>
@@ -55,15 +56,15 @@
     </div>
     <div>
       <h2>Qu'est-ce que e-MMI ?</h2><br>
-      <p>e-MMI est une plateforme qui connecte les étudiants et les professionnels du domaine MMI. 
+      <p>e-MMI est une plateforme qui connecte les étudiants MMI de l'IUT de Vélizy. 
         Elle permet de partager des événements, des projets et des opportunités de collaboration.</p>
-      <p>Notre objectif est de créer un réseau dynamique et interactif pour les étudiants et les professionnels MMI.</p>
+      <p>Notre objectif est de créer un réseau dynamique et interactif pour nos étudiants.</p>
     </div>
   </section>
 </body>
 <footer>
   <div>
-    <p>© 2021 e-MMI</p>
+    <p>© 2025 e-MMI</p>
   </div>
 </footer>
 </html>

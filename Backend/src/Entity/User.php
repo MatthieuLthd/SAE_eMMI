@@ -20,18 +20,21 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      * @ORM\GeneratedValue
      * @ORM\Column(type="integer")
      * @Groups("user:read")
+     * @Groups("event:read")
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("user:read")
+     * @Groups("event:read")
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
      * @Groups("user:read")
+     * @Groups("event:read")
      */
     private $email;
 
@@ -43,12 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     /**
      * @ORM\Column(type="boolean")
      * @Groups("user:read")
+     * @Groups("event:read")
      */
     private $isActive;
 
     /**
      * @ORM\Column(type="string", length=10)
      * @Groups("user:read")
+     * @Groups("event:read")
      */
     private $roles;
 
